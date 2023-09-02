@@ -1,11 +1,11 @@
-# [Code Screenshot](https://code-ss.pages.dev/)
+# [Code Screenshot Maker](https://shootcode.netlify.app/)
 
 A fully functional Ray.so clone (a powerful tool for sharing code snippets) with additional features. Share beautiful screenshots of your code on your social media platforms.
 
 **Project live at:** [https://shootcode.netlify.app/](https://shootcode.netlify.app/)
 
-**Complete tutorial/walkthrough available on my Youtube channel:**
-![Thumbnail](https://i.ibb.co/XJMbhLG/code-ss-thumbnail.png)
+
+![Thumbnail](https://raw.githubusercontent.com/rohittiwari-dev/code-screenshot-maker/main/public/thumbnail.png)
 
 ---
 
@@ -40,7 +40,7 @@ A fully functional Ray.so clone (a powerful tool for sharing code snippets) with
 1. Clone this repo
 
 ```bash
-git clone https://github.com/nimone/code-screenshot && cd code-screenshot
+git clone https://github.com/rohittiwari-dev/code-screenshot-maker.git && cd code-screenshot-maker
 ```
 
 2. Install project dependecies
