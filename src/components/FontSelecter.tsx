@@ -24,7 +24,7 @@ const FontSelecter = () => {
 					<SelectTrigger className="w-40">
 						<SelectValue />
 					</SelectTrigger>
-					<SelectContent className="dark max-h-[500px]">
+					<SelectContent className="dark max-h-[300px]">
 						{Object.entries(fonts).map(
 							([name, font]: [string, { name: string; src: string }]) => {
 								return (

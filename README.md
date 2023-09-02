@@ -1,27 +1,56 @@
-# React + TypeScript + Vite
+# [Code Screenshot](https://code-ss.pages.dev/)
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+A fully functional Ray.so clone (a powerful tool for sharing code snippets) with additional features. Share beautiful screenshots of your code on your social media platforms.
 
-Currently, two official plugins are available:
+**Project live at:** [https://shootcode.netlify.app/](https://shootcode.netlify.app/)
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+**Complete tutorial/walkthrough available on my Youtube channel:**
+![Thumbnail](https://i.ibb.co/XJMbhLG/code-ss-thumbnail.png)
 
-## Expanding the ESLint configuration
+---
 
-If you are developing a production application, we recommend updating the configuration to enable type aware lint rules:
+## Features
 
-- Configure the top-level `parserOptions` property like this:
+- 10+ elegant themes (light + dark theme included).
+- 12+ font styles (popular monospace fonts).
+- Support for all popuplar languages with auto-detection and syntax highlighting.
+- Multiple export options: save as SVG/PNG, copy to clipboard and copy link.
+- Other customization options like: font size, padding, background etc.
 
-```js
-   parserOptions: {
-    ecmaVersion: 'latest',
-    sourceType: 'module',
-    project: ['./tsconfig.json', './tsconfig.node.json'],
-    tsconfigRootDir: __dirname,
-   },
+---
+
+## Technologies used
+
+- [React](https://es.reactjs.org/) - Front-End JavaScript library.
+- [Tailwind CSS](https://tailwindcss.com/) - A utility-first CSS framework.
+- [ShadCN UI](https://ui.shadcn.com) - Re-usable components built using Radix UI and Tailwind CSS.
+- [Zustand](https://zustand-demo.pmnd.rs/) - Bear necessities for state management in React.
+- [Highlight.js](https://highlightjs.org/) - Syntax highlighter.
+- [React Simple Code Editor](https://www.npmjs.com/package/react-simple-code-editor) - Browser based code editor.
+- [HTML to Image](https://www.npmjs.com/package/html-to-image) - Generates an image from a DOM node using HTML5 canvas and SVG.
+- [React Hot Toast](https://react-hot-toast.com/) - Toast notifications for React.
+- [React Hotkeys Hook](https://www.npmjs.com/package/react-hotkeys-hook) - A React hook for using keyboard shortcuts in components in a declarative way.
+- [Resizable](https://www.npmjs.com/package/re-resizable) - A resizable component for React.
+- [Vite](https://vitejs.dev/) - Frontend Tooling
+
+---
+
+## Build steps
+
+1. Clone this repo
+
+```bash
+git clone https://github.com/nimone/code-screenshot && cd code-screenshot
 ```
 
-- Replace `plugin:@typescript-eslint/recommended` to `plugin:@typescript-eslint/recommended-type-checked` or `plugin:@typescript-eslint/strict-type-checked`
-- Optionally add `plugin:@typescript-eslint/stylistic-type-checked`
-- Install [eslint-plugin-react](https://github.com/jsx-eslint/eslint-plugin-react) and add `plugin:react/recommended` & `plugin:react/jsx-runtime` to the `extends` list
+2. Install project dependecies
+
+```bash
+npm install
+```
+
+3. Build the project and start a local server
+
+```bash
+npm run build && npm run serve
+```

@@ -1,4 +1,4 @@
-import { useEffect, useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 import CodeEditor from "./components/CodeEditor";
 import { cn } from "./lib/utils";
 import { fonts, themes } from "./utils/configuration";
@@ -15,8 +15,13 @@ import {
 	TransparentBackgroundSwitch,
 } from "./components/Switches";
 import { Resizable } from "re-resizable";
+import WriteTextResize from "./components/WriteTextResize";
 
 function App() {
+	// Creating state
+	const [width, setWidth] = useState("auto");
+	const [showWidth, setShowWidth] = useState(false);
+
 	const theme = useStore((state) => state.theme);
 	const padding = useStore((state) => state.padding);
 	const fontStyle = useStore((state) => state.fontStyle);
@@ -39,7 +44,7 @@ function App() {
 	}, []);
 
 	return (
-		<main className="dark overflow-x-auto min-h-screen flex-col flex justify-center bg-neutral-950 items-center text-white">
+		<main className="dark overflow-x-auto min-h-screen justify-center flex-col flex bg-neutral-950 items-center text-white">
 			<link
 				rel="stylesheet"
 				href={Object.create(themes)[theme].theme}
@@ -50,24 +55,33 @@ function App() {
 				href={Object.create(fonts)[fontStyle].src}
 				crossOrigin="anonymous"
 			/>
-			<Resizable
-				enable={{ left: true, right: true }}
-				minWidth={padding * 2 + 300}
-			>
-				<div
-					className={cn(
-						"overflow-hidden mb-2 transition-all ease-out",
-						showBackground
-							? Object.create(themes)[theme].background
-							: "ring ring-neutral-900"
-					)}
-					style={{ padding }}
-					ref={editorRef}
+			<div className="md:-mt-24">
+				<Resizable
+					enable={{ left: true, right: true }}
+					minWidth={padding * 2 + 300}
+					size={{ width, height: "auto" }}
+					onResize={(_e, _dir, ref) => setWidth(String(ref.offsetWidth))}
+					onResizeStart={() => setShowWidth(true)}
+					onResizeStop={() => setShowWidth(false)}
 				>
-					<CodeEditor />
-				</div>
-			</Resizable>
-			<Card className="sm:fixed my-6  sm:my-0 bottom-16 py-6 px-8 mx-6 bg-neutral-900/80 shadow-lg backdrop-blur">
+					<WriteTextResize showWidth={showWidth} width={width} />
+					<div
+						className={cn(
+							"overflow-hidden my-2 transition-all ease-out",
+							showBackground
+								? Object.create(themes)[theme].background
+								: "ring ring-neutral-900"
+						)}
+						style={{ padding }}
+						ref={editorRef}
+					>
+						<CodeEditor />
+					</div>
+					<WriteTextResize showWidth={showWidth} width={width} />
+				</Resizable>
+			</div>
+
+			<Card className="md:fixed my-6  md:my-0 bottom-16 py-6 px-8 mx-6 bg-neutral-900/80 shadow-lg backdrop-blur">
 				<CardContent className="flex gap-6 flex-wrap p-0">
 					<ThemeSelecter />
 					<LanguageSelect />

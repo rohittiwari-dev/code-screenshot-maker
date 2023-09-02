@@ -24,7 +24,7 @@ const ThemeSelecter = () => {
 				<SelectTrigger className="w-40">
 					<SelectValue />
 				</SelectTrigger>
-				<SelectContent className="dark max-h-[500px]">
+				<SelectContent className="dark max-h-[300px]">
 					{Object.entries(themes).map(
 						([name, theme]: [
 							string,

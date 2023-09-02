@@ -35,7 +35,7 @@ const LanguageSelect = () => {
 					{autoDetectLanguage && <MagicWandIcon className="mr2" />}
 					<SelectValue />
 				</SelectTrigger>
-				<SelectContent className="dark h-[500px]">
+				<SelectContent className="dark max-h-[300px]">
 					<SelectItem key={"auto-detect"} value={"auto-detect"}>
 						<span className="capitalize">auto detect</span>
 					</SelectItem>

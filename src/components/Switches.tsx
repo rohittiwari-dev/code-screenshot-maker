@@ -8,6 +8,7 @@ export const DarkModeSwitch = () => {
 				Dark Mode
 			</label>
 			<Switch
+				className="data-[state=checked]:bg-cyan-400"
 				checked={useStore((state) => state.darkMode)}
 				onCheckedChange={(checked) => useStore.setState({ darkMode: checked })}
 			/>
@@ -22,6 +23,7 @@ export const TransparentBackgroundSwitch = () => {
 				Background
 			</label>
 			<Switch
+				className="data-[state=checked]:bg-cyan-400"
 				checked={useStore((state) => state.showBackground)}
 				onCheckedChange={(checked) =>
 					useStore.setState({ showBackground: checked })
