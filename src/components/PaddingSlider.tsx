@@ -5,7 +5,7 @@ const PaddingSlider = () => {
 	return (
 		<div>
 			<label className="block mb-2 text-sm font-medium text-neutral-400">
-				Font Size
+				Padding
 			</label>
 			<Slider
 				className="w-44 my-5"
