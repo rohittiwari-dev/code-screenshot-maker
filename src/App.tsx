@@ -16,6 +16,9 @@ import {
 } from "./components/Switches";
 import { Resizable } from "re-resizable";
 import WriteTextResize from "./components/WriteTextResize";
+import Footer from "./components/Footer";
+import { Button } from "./components/ui/button";
+import { ResetIcon } from "@radix-ui/react-icons";
 
 function App() {
 	// Creating state
@@ -44,23 +47,23 @@ function App() {
 	}, []);
 
 	return (
-		<main className="dark overflow-x-auto min-h-screen justify-center flex-col flex bg-neutral-950 items-center text-white">
-			<link
-				rel="stylesheet"
-				href={Object.create(themes)[theme].theme}
-				crossOrigin="anonymous"
-			/>
-			<link
-				rel="stylesheet"
-				href={Object.create(fonts)[fontStyle].src}
-				crossOrigin="anonymous"
-			/>
-			<div className="md:-mt-24">
+		<>
+			<main className="dark p-2 min-h-screen justify-center flex-col flex bg-neutral-950 items-center text-white">
+				<link
+					rel="stylesheet"
+					href={Object.create(themes)[theme].theme}
+					crossOrigin="anonymous"
+				/>
+				<link
+					rel="stylesheet"
+					href={Object.create(fonts)[fontStyle].src}
+					crossOrigin="anonymous"
+				/>
 				<Resizable
 					enable={{ left: true, right: true }}
 					minWidth={padding * 2 + 300}
 					size={{ width, height: "auto" }}
-					onResize={(_e, _dir, ref) => setWidth(String(ref.offsetWidth))}
+					onResize={(_e, _dir, ref) => setWidth(ref.offsetWidth.toString())}
 					onResizeStart={() => setShowWidth(true)}
 					onResizeStop={() => setShowWidth(false)}
 				>
@@ -78,25 +81,39 @@ function App() {
 						<CodeEditor />
 					</div>
 					<WriteTextResize showWidth={showWidth} width={width} />
-				</Resizable>
-			</div>
-
-			<Card className="md:fixed my-6  md:my-0 bottom-16 py-6 px-8 mx-6 bg-neutral-900/80 shadow-lg backdrop-blur">
-				<CardContent className="flex gap-6 flex-wrap p-0">
-					<ThemeSelecter />
-					<LanguageSelect />
-					<FontSelecter />
-					<FontSizeInput />
-					<PaddingSlider />
-					<TransparentBackgroundSwitch />
-					<DarkModeSwitch />
-					<div className="w-px bg-neutral-800" />
-					<div className="place-self-center">
-						<ExportButton targetRef={editorRef} />
+					<div
+						className={cn(
+							"transition-opacity w-fit mx-auto -mt-4",
+							showWidth || width === "auto"
+								? "invisible opacity-0"
+								: "visible opacity-100"
+						)}
+					>
+						<Button size="sm" onClick={() => setWidth("auto")} variant="ghost">
+							<ResetIcon className="mr-2" />
+							Reset width
+						</Button>
 					</div>
-				</CardContent>
-			</Card>
-		</main>
+				</Resizable>
+
+				<Card className="md:fixed bottom-16 py-2 px-4 mx-auto bg-neutral-900/80 shadow-lg backdrop-blur">
+					<CardContent className="flex gap-6 flex-wrap p-0">
+						<ThemeSelecter />
+						<LanguageSelect />
+						<FontSelecter />
+						<FontSizeInput />
+						<PaddingSlider />
+						<TransparentBackgroundSwitch />
+						<DarkModeSwitch />
+						<div className="w-px bg-neutral-800" />
+						<div className="place-self-center">
+							<ExportButton targetRef={editorRef} />
+						</div>
+					</CardContent>
+				</Card>
+			</main>
+			<Footer />
+		</>
 	);
 }
 

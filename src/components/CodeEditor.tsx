@@ -30,7 +30,7 @@ const CodeEditor = () => {
 	return (
 		<div
 			className={cn(
-				"min-w-[300px] border-2 rounded-xl shadow-2xl",
+				"min-w-[300px] break-words border-2 rounded-xl shadow-2xl",
 				store.darkMode
 					? "bg-black/75 border-gray-600/40"
 					: "bg-white/75 border-gray-200/20"
