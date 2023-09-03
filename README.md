@@ -52,5 +52,5 @@ npm install
 3. Build the project and start a local server
 
 ```bash
-npm run build && npm run serve
+npm run build && npm run preview
 ```
