@@ -48,7 +48,7 @@ function App() {
 
 	return (
 		<>
-			<main className="dark p-2 min-h-screen justify-center flex-col flex bg-neutral-950 items-center text-white">
+			<main className="dark overflow-x-hidden p-2 min-h-screen justify-center flex-col flex bg-neutral-950 items-center text-white">
 				<link
 					rel="stylesheet"
 					href={Object.create(themes)[theme].theme}
@@ -70,7 +70,7 @@ function App() {
 					<WriteTextResize showWidth={showWidth} width={width} />
 					<div
 						className={cn(
-							"overflow-hidden my-2 transition-all ease-out",
+							"transition-all my-1 ease-out",
 							showBackground
 								? Object.create(themes)[theme].background
 								: "ring ring-neutral-900"
@@ -95,7 +95,6 @@ function App() {
 						</Button>
 					</div>
 				</Resizable>
-
 				<Card className="md:fixed bottom-16 py-2 px-4 mx-auto bg-neutral-900/80 shadow-lg backdrop-blur">
 					<CardContent className="flex gap-6 flex-wrap p-0">
 						<ThemeSelecter />

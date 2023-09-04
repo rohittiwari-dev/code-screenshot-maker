@@ -30,7 +30,7 @@ const CodeEditor = () => {
 	return (
 		<div
 			className={cn(
-				"min-w-[300px] break-words border-2 rounded-xl shadow-2xl",
+				"min-w-fit border-2 rounded-xl shadow-2xl",
 				store.darkMode
 					? "bg-black/75 border-gray-600/40"
 					: "bg-white/75 border-gray-200/20"
@@ -75,7 +75,7 @@ const CodeEditor = () => {
 						fontFamily: Object.create(fonts)[store.fontStyle].name,
 						fontSize: store.fontSize,
 					}}
-					textareaClassName="focus:outline-none"
+					textareaClassName="focus:outline-none min-w-fit"
 					// @ts-expect-error Line Conisists of Refereance variable of type HTMLElement | null
 					onClick={(e) => e.currentTarget.select()}
 				/>
