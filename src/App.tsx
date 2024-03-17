@@ -63,7 +63,9 @@ function App() {
 					enable={{ left: true, right: true }}
 					minWidth={padding * 2 + 300}
 					size={{ width, height: "auto" }}
-					onResize={(_e, _dir, ref) => setWidth(ref.offsetWidth.toString())}
+					onResize={(_e, _dir, ref) =>
+						setWidth(ref.offsetWidth.toString())
+					}
 					onResizeStart={() => setShowWidth(true)}
 					onResizeStop={() => setShowWidth(false)}
 				>
@@ -73,7 +75,7 @@ function App() {
 							"transition-all my-1 ease-out",
 							showBackground
 								? Object.create(themes)[theme].background
-								: "ring ring-neutral-900"
+								: "ring ring-neutral-900",
 						)}
 						style={{ padding }}
 						ref={editorRef}
@@ -86,16 +88,20 @@ function App() {
 							"transition-opacity w-fit mx-auto -mt-4",
 							showWidth || width === "auto"
 								? "invisible opacity-0"
-								: "visible opacity-100"
+								: "visible opacity-100",
 						)}
 					>
-						<Button size="sm" onClick={() => setWidth("auto")} variant="ghost">
+						<Button
+							size="sm"
+							onClick={() => setWidth("auto")}
+							variant="ghost"
+						>
 							<ResetIcon className="mr-2" />
 							Reset width
 						</Button>
 					</div>
 				</Resizable>
-				<Card className="md:fixed bottom-16 py-2 px-4 mx-auto bg-neutral-900/80 shadow-lg backdrop-blur">
+				<Card className="md:fixed bottom-20 py-2 px-4 mx-auto bg-neutral-900/80 shadow-lg backdrop-blur">
 					<CardContent className="flex gap-6 flex-wrap p-0">
 						<ThemeSelecter />
 						<LanguageSelect />
