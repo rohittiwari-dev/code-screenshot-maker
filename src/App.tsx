@@ -19,6 +19,7 @@ import WriteTextResize from "./components/WriteTextResize";
 import Footer from "./components/Footer";
 import { Button } from "./components/ui/button";
 import { ResetIcon } from "@radix-ui/react-icons";
+import { decompressFromEncodedURIComponent } from "lz-string";
 
 function App() {
 	// Creating state
@@ -30,25 +31,22 @@ function App() {
 	const fontStyle = useStore((state) => state.fontStyle);
 	const showBackground = useStore((state) => state.showBackground);
 	const editorRef = useRef<HTMLDivElement | null>(null);
-
-	// Handling Sharable links
 	useEffect(() => {
 		const queryParams = new URLSearchParams(location.search);
-		if (queryParams.size === 0) return;
-		const state = Object.fromEntries(queryParams);
-		useStore.setState({
-			...state,
-			code: state.code ? atob(state.code) : "",
-			darkMode: state.darkMode === "true",
-			autoDetectLanguage: state.autoDetectLanguage === "true",
-			padding: Number(state.padding || 64),
-			fontSize: Number(state.fontSize || 18),
-		});
+		const compressedState = queryParams.get("state");
+		if (compressedState) {
+			const decompressedState =
+				decompressFromEncodedURIComponent(compressedState);
+			if (decompressedState) {
+				const state = JSON.parse(decompressedState);
+				useStore.setState(state);
+			}
+		}
 	}, []);
 
 	return (
-		<>
-			<main className="dark overflow-x-hidden p-2 min-h-screen justify-center flex-col flex bg-neutral-950 items-center text-white">
+		<main className="flex flex-col w-screen h-screen">
+			<main className="flex flex-col flex-1 justify-around items-center bg-neutral-950 p-2 text-white overflow-x-hidden dark">
 				<link
 					rel="stylesheet"
 					href={Object.create(themes)[theme].theme}
@@ -101,8 +99,8 @@ function App() {
 						</Button>
 					</div>
 				</Resizable>
-				<Card className="md:fixed bottom-20 py-2 px-4 mx-auto bg-neutral-900/80 shadow-lg backdrop-blur">
-					<CardContent className="flex gap-6 flex-wrap p-0">
+				<Card className="bottom-20 z-50 md:fixed bg-neutral-900/80 shadow-lg backdrop-blur mx-auto px-4 py-2">
+					<CardContent className="flex flex-wrap gap-6 p-0">
 						<ThemeSelecter />
 						<LanguageSelect />
 						<FontSelecter />
@@ -110,7 +108,7 @@ function App() {
 						<PaddingSlider />
 						<TransparentBackgroundSwitch />
 						<DarkModeSwitch />
-						<div className="w-px bg-neutral-800" />
+						<div className="bg-neutral-800 w-px" />
 						<div className="place-self-center">
 							<ExportButton targetRef={editorRef} />
 						</div>
@@ -118,7 +116,7 @@ function App() {
 				</Card>
 			</main>
 			<Footer />
-		</>
+		</main>
 	);
 }
 

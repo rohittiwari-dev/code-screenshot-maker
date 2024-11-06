@@ -17,6 +17,7 @@ import { toBlob, toPng, toSvg } from "html-to-image";
 import { toast } from "react-hot-toast";
 import useStore from "@/utils/state-store";
 import { useHotkeys } from "react-hotkeys-hook";
+import { compressToEncodedURIComponent } from "lz-string";
 
 const ExportButton = ({
 	targetRef,
@@ -30,7 +31,9 @@ const ExportButton = ({
 	const copyImage = () => {
 		const response = async () => {
 			if (targetRef.current) {
-				const imgBlob = await toBlob(targetRef.current, { pixelRatio: 2 });
+				const imgBlob = await toBlob(targetRef.current, {
+					pixelRatio: 2,
+				});
 				const img = new ClipboardItem({ "image/png": imgBlob || "" });
 				navigator.clipboard.write([img]);
 			} else navigator.clipboard.writeText("Something Went Wrong");
@@ -42,24 +45,17 @@ const ExportButton = ({
 			error: "Something Went Wrong..",
 		});
 	};
-	// Generate Screensot Link to the Portal Funtion
+	// Generate Screenshot Link to the Portal Function
 	const generateLink = () => {
 		const state = useStore.getState();
-		const paramObject = new Map<string, string>();
-		for (let i = 0; i < Object.keys(state).length; i++) {
-			paramObject.set(
-				Object.keys(state)[i],
-				Object.values(state)[i].toString()
-			);
-			if (Object.keys(state)[i] == "code")
-				paramObject.set(
-					Object.keys(state)[i],
-					btoa(Object.values(state)[i].toString())
-				);
-		}
-		const queryParams = new URLSearchParams([...paramObject]).toString();
-		navigator.clipboard.writeText(`${location.href}?${queryParams}`);
-		toast.success("Link is copyied to Clipboard");
+		// Compress the entire state object to reduce URL length
+		const compressedState = compressToEncodedURIComponent(
+			JSON.stringify(state),
+		);
+		// Generate final URL with compressed state
+		const link = `${location.origin}${location.pathname}?state=${compressedState}`;
+		navigator.clipboard.writeText(link);
+		toast.success("Link is copied to Clipboard");
 	};
 
 	// Save Image Function
@@ -70,11 +66,15 @@ const ExportButton = ({
 			if (targetRef.current)
 				switch (format.toLowerCase()) {
 					case "png":
-						imgUrl = await toPng(targetRef.current, { pixelRatio: 2 });
+						imgUrl = await toPng(targetRef.current, {
+							pixelRatio: 2,
+						});
 						filename = `${filename}.png`;
 						break;
 					case "svg":
-						imgUrl = await toSvg(targetRef.current, { pixelRatio: 2 });
+						imgUrl = await toSvg(targetRef.current, {
+							pixelRatio: 2,
+						});
 						filename = `${filename}.svg`;
 						break;
 					default:

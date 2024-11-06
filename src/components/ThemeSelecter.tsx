@@ -12,7 +12,7 @@ import useStore from "@/utils/state-store";
 const ThemeSelecter = () => {
 	return (
 		<div>
-			<label className="block mb-2 text-sm font-medium text-neutral-400">
+			<label className="block mb-2 font-medium text-neutral-400 text-sm">
 				Theme
 			</label>
 			<Select
@@ -24,23 +24,28 @@ const ThemeSelecter = () => {
 				<SelectTrigger className="w-40">
 					<SelectValue />
 				</SelectTrigger>
-				<SelectContent className="dark max-h-[300px]">
+				<SelectContent className="max-h-[300px] dark">
 					{Object.entries(themes).map(
 						([name, theme]: [
 							string,
-							{ background: string; theme: string }
+							{ background: string; theme: string },
 						]) => {
 							return (
 								<SelectItem key={name} value={name}>
-									<div className="flex gap-2 items-center justify-start">
+									<div className="flex justify-start items-center gap-2">
 										<span
-											className={cn("rounded-full w-4 h-4", theme.background)}
+											className={cn(
+												"rounded-full w-4 h-4",
+												theme.background,
+											)}
 										/>
-										<span className="capitalize">{name}</span>
+										<span className="capitalize">
+											{name}
+										</span>
 									</div>
 								</SelectItem>
 							);
-						}
+						},
 					)}
 				</SelectContent>
 			</Select>

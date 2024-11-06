@@ -19,7 +19,10 @@ const LanguageSelect = () => {
 		if (language === "auto-detect") {
 			toast.dismiss();
 			toast.success("Language Auto Detection Feature Turned On..");
-			useStore.setState({ autoDetectLanguage: true, language: "plaintext" });
+			useStore.setState({
+				autoDetectLanguage: true,
+				language: "plaintext",
+			});
 		} else {
 			useStore.setState({ autoDetectLanguage: false, language });
 		}
@@ -27,7 +30,7 @@ const LanguageSelect = () => {
 
 	return (
 		<div>
-			<label className="block mb-2 text-sm font-medium text-neutral-400">
+			<label className="block mb-2 font-medium text-neutral-400 text-sm">
 				Language
 			</label>
 			<Select value={language} onValueChange={handleChange}>
@@ -35,7 +38,7 @@ const LanguageSelect = () => {
 					{autoDetectLanguage && <MagicWandIcon className="mr2" />}
 					<SelectValue />
 				</SelectTrigger>
-				<SelectContent className="dark max-h-[300px]">
+				<SelectContent className="max-h-[300px] dark">
 					<SelectItem key={"auto-detect"} value={"auto-detect"}>
 						<span className="capitalize">auto detect</span>
 					</SelectItem>
@@ -46,7 +49,7 @@ const LanguageSelect = () => {
 									<span>{extention}</span>
 								</SelectItem>
 							);
-						}
+						},
 					)}
 				</SelectContent>
 			</Select>

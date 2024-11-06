@@ -10,17 +10,17 @@ const WriteTextResize = ({ width, showWidth }: PropType) => {
 		<div
 			className={cn(
 				"w-full flex gap-2 items-center text-white transition-opacity",
-				showWidth ? "visible opacity-100" : "invisible opacity-0"
+				showWidth ? "visible opacity-100" : "invisible opacity-0",
 			)}
 		>
-			<div className="flex-1 flex items-center">
-				<div className="h-4 w-0.5 bg-white/20" />
-				<div className="h-px w-full bg-white/20" />
+			<div className="flex flex-1 items-center">
+				<div className="bg-white/20 w-0.5 h-4" />
+				<div className="bg-white/20 w-full h-px" />
 			</div>
 			<span className="text-neutral-500 text-sm">{width} px</span>
-			<div className="flex-1 flex items-center">
-				<div className="h-px w-full bg-white/20" />
-				<div className="h-4 w-0.5 bg-white/20" />
+			<div className="flex flex-1 items-center">
+				<div className="bg-white/20 w-full h-px" />
+				<div className="bg-white/20 w-0.5 h-4" />
 			</div>
 		</div>
 	);

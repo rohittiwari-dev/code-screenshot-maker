@@ -8,11 +8,11 @@ import {
 } from "./ui/select";
 import { fonts } from "@/utils/configuration";
 
-const FontSelecter = () => {
+const FontSelector = () => {
 	return (
 		<div>
 			<div>
-				<label className="block mb-2 text-sm font-medium text-neutral-400">
+				<label className="block mb-2 font-medium text-neutral-400 text-sm">
 					Theme
 				</label>
 				<Select
@@ -24,17 +24,22 @@ const FontSelecter = () => {
 					<SelectTrigger className="w-40">
 						<SelectValue />
 					</SelectTrigger>
-					<SelectContent className="dark max-h-[300px]">
+					<SelectContent className="max-h-[300px] dark">
 						{Object.entries(fonts).map(
-							([name, font]: [string, { name: string; src: string }]) => {
+							([name, font]: [
+								string,
+								{ name: string; src: string },
+							]) => {
 								return (
 									<SelectItem key={name} value={name}>
-										<div className="flex gap-2 items-center justify-start">
-											<span className="capitalize">{font.name}</span>
+										<div className="flex justify-start items-center gap-2">
+											<span className="capitalize">
+												{font.name}
+											</span>
 										</div>
 									</SelectItem>
 								);
-							}
+							},
 						)}
 					</SelectContent>
 				</Select>
@@ -43,4 +48,4 @@ const FontSelecter = () => {
 	);
 };
 
-export default FontSelecter;
+export default FontSelector;

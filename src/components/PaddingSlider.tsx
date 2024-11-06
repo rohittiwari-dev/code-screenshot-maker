@@ -4,11 +4,11 @@ import { Slider } from "./ui/slider";
 const PaddingSlider = () => {
 	return (
 		<div>
-			<label className="block mb-2 text-sm font-medium text-neutral-400">
+			<label className="block mb-2 font-medium text-neutral-400 text-sm">
 				Padding
 			</label>
 			<Slider
-				className="w-44 my-5"
+				className="my-5 w-44"
 				value={[useStore((state) => state.padding)]}
 				onValueChange={([padding]) => useStore.setState({ padding })}
 				max={120}

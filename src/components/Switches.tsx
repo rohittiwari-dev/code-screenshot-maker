@@ -4,13 +4,15 @@ import { Switch } from "./ui/switch";
 export const DarkModeSwitch = () => {
 	return (
 		<div>
-			<label className="block mb-2 text-sm font-medium text-neutral-400">
+			<label className="block mb-2 font-medium text-neutral-400 text-sm">
 				Dark Mode
 			</label>
 			<Switch
 				className="data-[state=checked]:bg-cyan-400"
 				checked={useStore((state) => state.darkMode)}
-				onCheckedChange={(checked) => useStore.setState({ darkMode: checked })}
+				onCheckedChange={(checked) =>
+					useStore.setState({ darkMode: checked })
+				}
 			/>
 		</div>
 	);
@@ -19,7 +21,7 @@ export const DarkModeSwitch = () => {
 export const TransparentBackgroundSwitch = () => {
 	return (
 		<div>
-			<label className="block mb-2 text-sm font-medium text-neutral-400">
+			<label className="block mb-2 font-medium text-neutral-400 text-sm">
 				Background
 			</label>
 			<Switch
