@@ -23,7 +23,9 @@ const CodeEditor = () => {
 	useEffect(() => {
 		if (store.autoDetectLanguage) {
 			const { language } = flourite(store.code, { noUnknown: true });
-			useStore.setState({ language: language.toLowerCase() || "plaintext" });
+			useStore.setState({
+				language: language.toLowerCase() || "plaintext",
+			});
 		}
 	}, [store.autoDetectLanguage, store.code]);
 
@@ -33,25 +35,27 @@ const CodeEditor = () => {
 				"min-w-fit border-2 rounded-xl shadow-2xl",
 				store.darkMode
 					? "bg-black/75 border-gray-600/40"
-					: "bg-white/75 border-gray-200/20"
+					: "bg-white/75 border-gray-200/20",
 			)}
 		>
-			<header className="grid grid-cols-6 gap-3 items-center px-4 py-3">
+			<header className="items-center gap-3 grid grid-cols-6 px-4 py-3">
 				<div className="flex gap-1 5">
-					<div className="rounded-full h-3 w-3 bg-red-500" />
-					<div className="rounded-full h-3 w-3 bg-yellow-500" />
-					<div className="rounded-full h-3 w-3 bg-green-500" />
+					<div className="bg-red-500 rounded-full w-3 h-3" />
+					<div className="bg-yellow-500 rounded-full w-3 h-3" />
+					<div className="bg-green-500 rounded-full w-3 h-3" />
 				</div>
-				<div className="col-span-4 flex justify-center">
+				<div className="flex justify-center col-span-4">
 					<input
 						type="text"
 						name="title"
 						id="title"
 						value={store.title}
-						onChange={(e) => useStore.setState({ title: e.target.value })}
+						onChange={(e) =>
+							useStore.setState({ title: e.target.value })
+						}
 						spellCheck={false}
 						onClick={(e) => e.currentTarget.select()}
-						className="bg-transparent text-center text-gray-400 text-sm font-medium focus:outline-none"
+						className="flex-1 bg-transparent font-medium text-center text-gray-400 text-sm focus:outline-none"
 					/>
 				</div>
 			</header>
@@ -60,15 +64,16 @@ const CodeEditor = () => {
 					"px-4 pb-4",
 					store.darkMode
 						? "brightness-110"
-						: "text-gray-800 brightness-50 saturate-200 contrast-200"
+						: "text-gray-800 brightness-50 saturate-200 contrast-200",
 				)}
 			>
 				<Editor
 					value={store.code}
 					onValueChange={(code) => useStore.setState({ code: code })}
 					highlight={(code) =>
-						hljs.highlight(code, { language: store.language || "plaintext" })
-							.value
+						hljs.highlight(code, {
+							language: store.language || "plaintext",
+						}).value
 					}
 					padding={10}
 					style={{
