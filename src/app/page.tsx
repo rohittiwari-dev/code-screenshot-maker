@@ -37,7 +37,6 @@ export async function generateMetadata({
 	const description = `Check out this ${sharedData.language} code snippet: "${sharedData.title}". Created with CodeShare - Beautiful Code Screenshots.`;
 	const baseUrl = getBaseUrl();
 	const url = `${baseUrl}?t=${shareId}`;
-	const thumbnailUrl = `${baseUrl}/thumbnail.png`;
 
 	return {
 		title,
@@ -49,7 +48,7 @@ export async function generateMetadata({
 			type: "website",
 			images: [
 				{
-					url: thumbnailUrl,
+					url: "/thumbnail.png",
 					width: 1200,
 					height: 630,
 					alt: `${sharedData.title} - Code Screenshot`,
@@ -60,7 +59,7 @@ export async function generateMetadata({
 			card: "summary_large_image",
 			title,
 			description,
-			images: [thumbnailUrl],
+			images: ["/thumbnail.png"],
 		},
 	};
 }

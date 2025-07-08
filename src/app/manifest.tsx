@@ -1,15 +1,18 @@
+import { getBaseUrl } from "@/lib/base-url";
 import type { MetadataRoute } from "next";
 
 export default function manifest(): MetadataRoute.Manifest {
 	return {
 		name: "CodeShare - Beautiful Code Screenshots",
 		short_name: "CodeShare",
+		id: "/",
 		description:
 			"Transform your code snippets into stunning, shareable images with customizable themes, fonts, and styling options. Perfect for social media, documentation, and presentations.",
 		start_url: "/",
 		display: "standalone",
 		background_color: "#000000",
 		theme_color: "#000000",
+		related_applications: [{ platform: "website", url: getBaseUrl() }],
 		orientation: "portrait-primary",
 		icons: [
 			{
@@ -24,18 +27,11 @@ export default function manifest(): MetadataRoute.Manifest {
 				type: "image/png",
 				purpose: "any",
 			},
-			{
-				src: "/icon.png",
-				sizes: "180x180",
-				type: "image/png",
-				purpose: "any",
-			},
 		],
 		categories: ["developer", "productivity", "utilities"],
+		display_override: ["window-controls-overlay"],
 		lang: "en",
-		dir: "ltr",
 		scope: "/",
-		id: "codeshare-app",
 		shortcuts: [
 			{
 				name: "Create Screenshot",

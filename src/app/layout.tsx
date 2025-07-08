@@ -17,10 +17,13 @@ const geistMono = Geist_Mono({
 const baseUrl = getBaseUrl();
 
 export const metadata: Metadata = {
+	metadataBase: new URL(baseUrl || "https://codeshare.rohittiwari.me"),
 	title: {
 		default: "CodeShare - Beautiful Code Screenshots",
 		template: "%s | CodeShare",
 	},
+	manifest: "/manifest.json",
+	referrer: "origin-when-cross-origin",
 	description:
 		"Transform your code snippets into stunning, shareable images with customizable themes, fonts, and styling options. Perfect for social media, documentation, and presentations.",
 	keywords: [
@@ -117,7 +120,7 @@ export const metadata: Metadata = {
 			"Transform your code snippets into stunning, shareable images with customizable themes, fonts, and styling options.",
 		images: [
 			{
-				url: `${baseUrl}/thumbnail.png`,
+				url: "/thumbnail.png",
 				width: 1200,
 				height: 630,
 				alt: "CodeShare - Beautiful Code Screenshots",
@@ -132,7 +135,7 @@ export const metadata: Metadata = {
 		title: "CodeShare - Beautiful Code Screenshots",
 		description:
 			"Transform your code snippets into stunning, shareable images with customizable themes, fonts, and styling options.",
-		images: [`${baseUrl}/thumbnail.png`],
+		images: ["/thumbnail.png"],
 	},
 	icons: {
 		icon: [
@@ -146,6 +149,9 @@ export const metadata: Metadata = {
 				url: "/icon.png",
 			},
 		],
+	},
+	alternates: {
+		canonical: getBaseUrl(),
 	},
 	verification: {
 		// Add your verification codes here when you have them
