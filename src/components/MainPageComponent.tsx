@@ -2,7 +2,6 @@
 import React, { useEffect, useRef, useState } from "react";
 import { cn } from "@/lib/utils";
 import { themes, fonts } from "@/utils/configuration";
-import dynamic from "next/dynamic";
 import { Resizable } from "re-resizable";
 import { IconRefresh } from "@tabler/icons-react";
 import { sharableLinkDataTable } from "@/db/schema";
@@ -15,16 +14,11 @@ import CodeEditor from "./CodeEditor";
 import ExportButton from "./ExportButton";
 import FontSizeInput from "./FontSizeInput";
 import LanguageSelect from "./LanguageSelect";
+import FontSelecter from "./FontSelecter";
+import PaddingSlider from "./PaddingSlider";
+import ThemeSelecter from "./ThemeSelecter";
 
 // Dynamic imports for components to avoid server-side rendering issues
-const FontSelecter = dynamic(() => import("./FontSelecter"), { ssr: false });
-const PaddingSlider = dynamic(() => import("./PaddingSlider"), { ssr: false });
-const ThemeSelecter = dynamic(() => import("./ThemeSelecter"), {
-	ssr: false,
-	loading: () => (
-		<div className="w-24 h-8 bg-neutral-800 rounded animate-pulse" />
-	),
-});
 
 const MainPageComponent = ({
 	state,
@@ -116,7 +110,7 @@ const MainPageComponent = ({
 					</Button>
 				</div>
 			</Resizable>
-			<Card className="bottom-20 z-50 w-full min-h-max md:fixed transition-all duration-500 ease-in-out bg-neutral-900/80 shadow-lg backdrop-blur mx-auto px-4 py-2">
+			<Card className="bottom-20 z-50 md:fixed transition-all duration-500 ease-in-out bg-neutral-900/80 shadow-lg backdrop-blur mx-auto px-4 py-2">
 				<CardContent className="flex flex-wrap gap-6 p-0">
 					<ThemeSelecter />
 					<LanguageSelect />
