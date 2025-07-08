@@ -1,6 +1,6 @@
-# CodeShoot 📸
+# CodeShare 📸
 
-CodeShoot is a beautiful, modern web application for creating stunning code screenshots. Transform your code snippets into visually appealing images with customizable themes, fonts, and styling options.
+CodeShare is a beautiful, modern web application for creating stunning code screenshots. Transform your code snippets into visually appealing images with customizable themes, fonts, and styling options.
 
 ## ✨ Features
 
@@ -26,8 +26,8 @@ CodeShoot is a beautiful, modern web application for creating stunning code scre
 1. Clone the repository:
 
 ```bash
-git clone https://github.com/yourusername/codeshoot.git
-cd codeshoot
+git clone https://github.com/yourusername/codeshare.git
+cd codeshare
 ```
 
 2. Install dependencies:
