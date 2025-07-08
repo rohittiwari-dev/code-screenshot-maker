@@ -12,7 +12,10 @@ import useStore from "@/utils/state-store";
 const ThemeSelecter = () => {
 	return (
 		<div>
-			<label className="block mb-2 font-medium text-neutral-400 text-sm">
+			<label
+				htmlFor="theme-select"
+				className="block mb-2 font-medium text-neutral-400 text-sm"
+			>
 				Theme
 			</label>
 			<Select
@@ -21,7 +24,12 @@ const ThemeSelecter = () => {
 					useStore.setState({ theme: e });
 				}}
 			>
-				<SelectTrigger className="w-40">
+				<SelectTrigger
+					className="w-40"
+					id="theme-select"
+					name="theme-select"
+					aria-label="Theme Selector"
+				>
 					<SelectValue />
 				</SelectTrigger>
 				<SelectContent className="max-h-[300px] dark">

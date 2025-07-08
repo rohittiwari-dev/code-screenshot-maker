@@ -1,22 +1,30 @@
 "use client";
+import React, { useEffect, useRef, useState } from "react";
 import { cn } from "@/lib/utils";
 import { themes, fonts } from "@/utils/configuration";
+import dynamic from "next/dynamic";
+import { Resizable } from "re-resizable";
+import { IconRefresh } from "@tabler/icons-react";
+import { sharableLinkDataTable } from "@/db/schema";
+import { TransparentBackgroundSwitch, DarkModeSwitch } from "./Switches";
+import { Button } from "./ui/button";
+import { Card, CardContent } from "./ui/card";
 import useStore from "@/utils/state-store";
-import React, { useEffect, useRef, useState } from "react";
-import CodeEditor from "./CodeEditor";
 import ExportButton from "./ExportButton";
 import FontSelecter from "./FontSelecter";
 import FontSizeInput from "./FontSizeInput";
 import LanguageSelect from "./LanguageSelect";
 import PaddingSlider from "./PaddingSlider";
-import { TransparentBackgroundSwitch, DarkModeSwitch } from "./Switches";
-import ThemeSelecter from "./ThemeSelecter";
-import { Button } from "./ui/button";
-import { Card, CardContent } from "./ui/card";
-import WriteTextResize from "./WriteTextResize";
-import { Resizable } from "re-resizable";
-import { IconRefresh } from "@tabler/icons-react";
-import { sharableLinkDataTable } from "@/db/schema";
+
+const ThemeSelecter = dynamic(() => import("./ThemeSelecter"), {
+	ssr: false,
+});
+const WriteTextResize = dynamic(() => import("./WriteTextResize"), {
+	ssr: false,
+});
+const CodeEditor = dynamic(() => import("./CodeEditor"), {
+	ssr: false,
+});
 
 const MainPageComponent = ({
 	state,
@@ -99,6 +107,8 @@ const MainPageComponent = ({
 						size="sm"
 						onClick={() => setWidth("auto")}
 						variant="ghost"
+						name="reset-width-button"
+						aria-label="Reset Width"
 					>
 						<IconRefresh className="mr-2" />
 						Reset width

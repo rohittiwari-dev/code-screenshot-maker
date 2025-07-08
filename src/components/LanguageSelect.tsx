@@ -29,11 +29,19 @@ const LanguageSelect = () => {
 
 	return (
 		<div>
-			<label className="block mb-2 font-medium text-neutral-400 text-sm">
+			<label
+				htmlFor="language-select"
+				className="block mb-2 font-medium text-neutral-400 text-sm"
+			>
 				Language
 			</label>
 			<Select value={language} onValueChange={handleChange}>
-				<SelectTrigger className="w-40">
+				<SelectTrigger
+					className="w-40"
+					id="language-select"
+					name="language-select"
+					aria-label="Language Selector"
+				>
 					{autoDetectLanguage && <IconWand className="mr2" />}
 					<SelectValue />
 				</SelectTrigger>

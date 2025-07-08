@@ -45,6 +45,9 @@ const CodeEditor = () => {
 					<div className="bg-green-500 rounded-full w-3 h-3" />
 				</div>
 				<div className="flex justify-center col-span-4">
+					<label htmlFor="title" className="sr-only">
+						Title
+					</label>
 					<input
 						type="text"
 						name="title"
@@ -67,6 +70,9 @@ const CodeEditor = () => {
 						: "text-gray-800 brightness-50 saturate-200 contrast-200",
 				)}
 			>
+				<label htmlFor="code-editor" className="sr-only">
+					Code Editor
+				</label>
 				<Editor
 					value={store.code}
 					onValueChange={(code) => useStore.setState({ code: code })}
@@ -83,6 +89,10 @@ const CodeEditor = () => {
 					textareaClassName="focus:outline-none min-w-fit"
 					// @ts-expect-error Line Conisists of Refereance variable of type HTMLElement | null
 					onClick={(e) => e.currentTarget.select()}
+					name="code-editor"
+					id="code-editor"
+					aria-label="Code Editor"
+					textareaId="code-editor-textarea"
 				/>
 			</div>
 		</div>

@@ -10,11 +10,13 @@ const Footer = () => {
 					alt="logo"
 					width={20}
 					height={20}
+					aria-label="Rohit Tiwari Logo"
 				/>
 				<a
 					href="https://rohitdev.netlify.app"
 					rel="noopener norefferer"
 					className="underline"
+					aria-label="Rohit Tiwari"
 				>
 					Rohit Tiwari
 				</a>
@@ -23,6 +25,7 @@ const Footer = () => {
 				href="https://rohitdev.netlify.app/contact"
 				rel="noopener norefferer"
 				className="underline"
+				aria-label="Give Feedback"
 			>
 				&copy; Rohit Tiwari for fun 😉 | Give Feedback
 			</a>

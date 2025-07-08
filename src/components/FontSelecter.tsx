@@ -12,8 +12,11 @@ const FontSelector = () => {
 	return (
 		<div>
 			<div>
-				<label className="block mb-2 font-medium text-neutral-400 text-sm">
-					Theme
+				<label
+					htmlFor="font-select"
+					className="block mb-2 font-medium text-neutral-400 text-sm"
+				>
+					Font
 				</label>
 				<Select
 					value={useStore((state) => state.fontStyle)}
@@ -21,7 +24,12 @@ const FontSelector = () => {
 						useStore.setState({ fontStyle: e });
 					}}
 				>
-					<SelectTrigger className="w-40">
+					<SelectTrigger
+						className="w-40"
+						id="font-select"
+						name="font-select"
+						aria-label="Font Selector"
+					>
 						<SelectValue />
 					</SelectTrigger>
 					<SelectContent className="max-h-[300px] dark">

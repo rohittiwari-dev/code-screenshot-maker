@@ -130,7 +130,7 @@ const ExportButton = ({
 		<>
 			<DropdownMenu>
 				<DropdownMenuTrigger asChild>
-					<Button>
+					<Button name="export-button" aria-label="Export Screenshot">
 						<IconShare2 className="mr-2" /> Export
 					</Button>
 				</DropdownMenuTrigger>
@@ -181,12 +181,18 @@ const ExportButton = ({
 						screenshot.
 					</p>
 					<div className="w-full flex items-center gap-4 bg-muted rounded px-2 py-2">
+						<label htmlFor="sharable-link-input">
+							Sharable Link
+						</label>
 						<input
 							type="text"
 							readOnly
 							className="flex-1 bg-transparent outline-none text-xs"
 							value={sharableLink}
 							onFocus={(e) => e.target.select()}
+							aria-label="Sharable Link"
+							name="sharable-link-input"
+							id="sharable-link-input"
 						/>
 						<Button
 							size="sm"
