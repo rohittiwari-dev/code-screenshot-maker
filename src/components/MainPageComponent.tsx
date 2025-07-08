@@ -10,40 +10,19 @@ import { TransparentBackgroundSwitch, DarkModeSwitch } from "./Switches";
 import { Button } from "./ui/button";
 import { Card, CardContent } from "./ui/card";
 import useStore from "@/utils/state-store";
+import WriteTextResize from "./WriteTextResize";
+import CodeEditor from "./CodeEditor";
 import ExportButton from "./ExportButton";
-import FontSelecter from "./FontSelecter";
 import FontSizeInput from "./FontSizeInput";
 import LanguageSelect from "./LanguageSelect";
-import PaddingSlider from "./PaddingSlider";
 
+// Dynamic imports for components to avoid server-side rendering issues
+const FontSelecter = dynamic(() => import("./FontSelecter"), { ssr: false });
+const PaddingSlider = dynamic(() => import("./PaddingSlider"), { ssr: false });
 const ThemeSelecter = dynamic(() => import("./ThemeSelecter"), {
 	ssr: false,
 	loading: () => (
 		<div className="w-24 h-8 bg-neutral-800 rounded animate-pulse" />
-	),
-});
-const WriteTextResize = dynamic(() => import("./WriteTextResize"), {
-	ssr: false,
-	loading: () => <div className="h-4" />,
-});
-const CodeEditor = dynamic(() => import("./CodeEditor"), {
-	ssr: false,
-	loading: () => (
-		<div className="min-w-fit border-2 rounded-xl shadow-2xl bg-black/75 border-gray-600/40">
-			<div className="items-center gap-3 grid grid-cols-6 px-4 py-3">
-				<div className="flex gap-1.5">
-					<div className="bg-red-500 rounded-full w-3 h-3" />
-					<div className="bg-yellow-500 rounded-full w-3 h-3" />
-					<div className="bg-green-500 rounded-full w-3 h-3" />
-				</div>
-				<div className="flex justify-center col-span-4">
-					<div className="bg-neutral-700 h-4 w-32 rounded animate-pulse" />
-				</div>
-			</div>
-			<div className="px-4 pb-4">
-				<div className="bg-neutral-700 h-32 w-full rounded animate-pulse" />
-			</div>
-		</div>
 	),
 });
 
@@ -137,7 +116,7 @@ const MainPageComponent = ({
 					</Button>
 				</div>
 			</Resizable>
-			<Card className="bottom-20 z-50 md:fixed bg-neutral-900/80 shadow-lg backdrop-blur mx-auto px-4 py-2">
+			<Card className="bottom-20 z-50 w-full min-h-max md:fixed transition-all duration-500 ease-in-out bg-neutral-900/80 shadow-lg backdrop-blur mx-auto px-4 py-2">
 				<CardContent className="flex flex-wrap gap-6 p-0">
 					<ThemeSelecter />
 					<LanguageSelect />
