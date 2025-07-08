@@ -1,36 +1,105 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# CodeShoot 📸
 
-## Getting Started
+CodeShoot is a beautiful, modern web application for creating stunning code screenshots. Transform your code snippets into visually appealing images with customizable themes, fonts, and styling options.
 
-First, run the development server:
+## ✨ Features
+
+-   **Beautiful Code Highlighting**: Syntax highlighting for multiple programming languages
+-   **Customizable Themes**: Choose from various color themes to match your style
+-   **Font Options**: Multiple font choices for the perfect look
+-   **Adjustable Padding**: Control the spacing around your code
+-   **Background Options**: Toggle between transparent and themed backgrounds
+-   **Dark/Light Modes**: Support for both dark and light interfaces
+-   **Auto Language Detection**: Automatically detect programming languages
+-   **Export Options**: Generate high-quality images of your code
+-   **Responsive Design**: Works seamlessly on desktop and mobile devices
+
+## 🚀 Getting Started
+
+### Prerequisites
+
+-   [Bun](https://bun.sh/) (recommended) or Node.js 18+
+-   A Neon Database account (for database features)
+
+### Installation
+
+1. Clone the repository:
 
 ```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+git clone https://github.com/yourusername/codeshoot.git
+cd codeshoot
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+2. Install dependencies:
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+```bash
+bun install
+# or
+npm install
+```
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+3. Set up environment variables:
 
-## Learn More
+```bash
+cp .env.example .env
+```
 
-To learn more about Next.js, take a look at the following resources:
+Fill in the required environment variables in `.env`
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+4. Set up the database:
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+```bash
+bun run db:push
+```
 
-## Deploy on Vercel
+5. Start the development server:
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+```bash
+bun dev
+# or
+npm run dev
+```
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+Open [http://localhost:3000](http://localhost:3000) to see the application.
+
+## 🛠️ Tech Stack
+
+-   **Framework**: [Next.js 15](https://nextjs.org/) with App Router
+-   **Styling**: [Tailwind CSS](https://tailwindcss.com/)
+-   **Database**: [Drizzle ORM](https://orm.drizzle.team/) with [Neon Database](https://neon.tech/)
+-   **UI Components**: [Radix UI](https://www.radix-ui.com/) with [shadcn/ui](https://ui.shadcn.com/)
+-   **Code Editor**: [react-simple-code-editor](https://github.com/react-simple-code-editor/react-simple-code-editor)
+-   **Syntax Highlighting**: [highlight.js](https://highlightjs.org/)
+-   **Image Generation**: [html-to-image](https://github.com/bubkoo/html-to-image)
+-   **State Management**: [Zustand](https://zustand-demo.pmnd.rs/)
+-   **Runtime**: [Bun](https://bun.sh/)
+
+## 📝 Available Scripts
+
+```bash
+# Development
+bun dev                 # Start development server
+bun build              # Build for production
+bun start              # Start production server
+
+# Database
+bun run db:generate    # Generate database migrations
+bun run db:migrate     # Run database migrations
+bun run db:push        # Push schema changes to database
+bun run db:studio      # Open Drizzle Studio
+
+# Code Quality
+bun lint               # Run ESLint
+```
+
+## 🤝 Contributing
+
+We welcome contributions! Please see our [Contributing Guidelines](CONTRIBUTING.md) for details.
+
+## 📄 License
+
+This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
+
+## 🔒 Security
+
+For security issues, please see our [Security Policy](SECURITY.md).
