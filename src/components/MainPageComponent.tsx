@@ -18,12 +18,33 @@ import PaddingSlider from "./PaddingSlider";
 
 const ThemeSelecter = dynamic(() => import("./ThemeSelecter"), {
 	ssr: false,
+	loading: () => (
+		<div className="w-24 h-8 bg-neutral-800 rounded animate-pulse" />
+	),
 });
 const WriteTextResize = dynamic(() => import("./WriteTextResize"), {
 	ssr: false,
+	loading: () => <div className="h-4" />,
 });
 const CodeEditor = dynamic(() => import("./CodeEditor"), {
 	ssr: false,
+	loading: () => (
+		<div className="min-w-fit border-2 rounded-xl shadow-2xl bg-black/75 border-gray-600/40">
+			<div className="items-center gap-3 grid grid-cols-6 px-4 py-3">
+				<div className="flex gap-1.5">
+					<div className="bg-red-500 rounded-full w-3 h-3" />
+					<div className="bg-yellow-500 rounded-full w-3 h-3" />
+					<div className="bg-green-500 rounded-full w-3 h-3" />
+				</div>
+				<div className="flex justify-center col-span-4">
+					<div className="bg-neutral-700 h-4 w-32 rounded animate-pulse" />
+				</div>
+			</div>
+			<div className="px-4 pb-4">
+				<div className="bg-neutral-700 h-32 w-full rounded animate-pulse" />
+			</div>
+		</div>
+	),
 });
 
 const MainPageComponent = ({
@@ -80,6 +101,7 @@ const MainPageComponent = ({
 				}
 				onResizeStart={() => setShowWidth(true)}
 				onResizeStop={() => setShowWidth(false)}
+				style={{ minHeight: "250px" }}
 			>
 				<WriteTextResize showWidth={showWidth} width={width} />
 				<div
