@@ -1,11 +1,8 @@
 import { findSharableLinkById } from "@/actions";
 import Footer from "@/components/Footer";
+import MainPageComponent from "@/components/MainPageComponent";
 import { getBaseUrl } from "@/lib/base-url";
 import { Metadata } from "next";
-import dynamic from "next/dynamic";
-const MainPageComponent = dynamic(
-	() => import("@/components/MainPageComponent"),
-);
 
 type Props = {
 	searchParams: Promise<{ [key: string]: string | string[] | undefined }>;
