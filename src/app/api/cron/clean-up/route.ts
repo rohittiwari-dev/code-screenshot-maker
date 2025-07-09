@@ -7,7 +7,6 @@ export async function POST(request: Request) {
 		const cronSecret = process.env.CRON_SECRET;
 
 		if (!cronSecret) {
-			console.error("[CRON] CRON_SECRET not configured in environment");
 			return NextResponse.json(
 				{
 					message: "Server configuration error",
@@ -22,7 +21,6 @@ export async function POST(request: Request) {
 
 		// Validate the secret
 		if (!body.secret || body.secret !== cronSecret) {
-			console.error("[CRON] Invalid or missing secret in request");
 			return NextResponse.json(
 				{
 					message: "Unauthorized - Invalid secret",
@@ -32,8 +30,6 @@ export async function POST(request: Request) {
 			);
 		}
 
-		// Perform the cleanup using existing action
-		console.log("[CRON] Running cleanup job - deleting 1 week old data");
 		const result = await deleteOldMessages();
 
 		return NextResponse.json(
@@ -46,8 +42,6 @@ export async function POST(request: Request) {
 			{ status: 200 },
 		);
 	} catch (error) {
-		console.error("[CRON] Error during cleanup:", error);
-
 		return NextResponse.json(
 			{
 				message: "Cleanup failed",
