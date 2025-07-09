@@ -45,11 +45,20 @@ export const findSharableLinkById = async (id: string) => {
 };
 
 export async function deleteOldMessages() {
-	const threshold = new Date(Date.now() - 24 * 60 * 60 * 1000); // 24 hours ago
+	const threshold = new Date(Date.now() - 7 * 24 * 60 * 60 * 1000); // 1 week ago
 
-	await db
+	const result = await db
 		.delete(sharableLinkDataTable)
 		.where(lt(sharableLinkDataTable.createdAt, threshold));
 
-	console.log(`[CRON] Deleted old messages`);
+	const deletedCount = result.rowCount || 0;
+	console.log(
+		`[CRON] Deleted ${deletedCount} old messages older than 1 week`,
+	);
+
+	return {
+		deletedCount,
+		threshold: threshold.toISOString(),
+		timestamp: new Date().toISOString(),
+	};
 }
