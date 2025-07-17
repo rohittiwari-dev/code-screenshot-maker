@@ -8,6 +8,13 @@
       "when": 1751950822043,
       "tag": "0000_volatile_guardian",
       "breakpoints": true
+    },
+    {
+      "idx": 1,
+      "version": "7",
+      "when": 1752772329984,
+      "tag": "0001_whole_lord_tyger",
+      "breakpoints": true
     }
   ]
 }

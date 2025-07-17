@@ -1,0 +1,1 @@
+ALTER TABLE "sharable_link_data_table" ADD COLUMN "is_editor_content_complete_selectable" boolean DEFAULT false;
