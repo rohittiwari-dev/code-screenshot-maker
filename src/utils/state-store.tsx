@@ -14,6 +14,7 @@ const useStore = create(
 			fontSize: 18,
 			fontStyle: "jetBrainsMono",
 			padding: 64,
+			isEditorContentCompleteSelectable: false,
 		}),
 		{
 			name: "user-preferance",

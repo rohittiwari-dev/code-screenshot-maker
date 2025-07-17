@@ -5,7 +5,11 @@ import { themes, fonts } from "@/utils/configuration";
 import { Resizable } from "re-resizable";
 import { IconRefresh } from "@tabler/icons-react";
 import { sharableLinkDataTable } from "@/db/schema";
-import { TransparentBackgroundSwitch, DarkModeSwitch } from "./Switches";
+import {
+	TransparentBackgroundSwitch,
+	DarkModeSwitch,
+	TurnOnCompleteCodeSelectionFeature,
+} from "./Switches";
 import { Button } from "./ui/button";
 import { Card, CardContent } from "./ui/card";
 import useStore from "@/utils/state-store";
@@ -48,6 +52,8 @@ const MainPageComponent = ({
 					fontSize: state.fontSize || 16,
 					language: state.language || "plaintext",
 					title: state.title || "Untitled",
+					isEditorContentCompleteSelectable:
+						state.isEditorContentCompleteSelectable || false,
 				});
 			}
 		}
@@ -119,6 +125,7 @@ const MainPageComponent = ({
 					<PaddingSlider />
 					<TransparentBackgroundSwitch />
 					<DarkModeSwitch />
+					<TurnOnCompleteCodeSelectionFeature />
 					<div className="bg-neutral-800 w-px" />
 					<div className="place-self-center">
 						<ExportButton targetRef={editorRef} />

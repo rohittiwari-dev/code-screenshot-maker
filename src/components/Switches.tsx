@@ -45,3 +45,29 @@ export const TransparentBackgroundSwitch = () => {
 		</div>
 	);
 };
+
+export const TurnOnCompleteCodeSelectionFeature = () => {
+	return (
+		<div>
+			<label
+				htmlFor="enable-complete-code-selection"
+				className="block mb-2 font-medium text-neutral-400 text-sm"
+			>
+				Select All on Click
+			</label>
+			<Switch
+				id="enable-complete-code-selection"
+				name="enable-complete-code-selection"
+				className="data-[state=checked]:bg-cyan-400"
+				checked={useStore(
+					(state) => state.isEditorContentCompleteSelectable,
+				)}
+				onCheckedChange={(checked) =>
+					useStore.setState({
+						isEditorContentCompleteSelectable: checked,
+					})
+				}
+			/>
+		</div>
+	);
+};

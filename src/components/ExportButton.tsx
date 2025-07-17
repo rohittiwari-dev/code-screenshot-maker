@@ -1,3 +1,4 @@
+import { useState, useEffect, useCallback } from "react";
 import {
 	DropdownMenu,
 	DropdownMenuContent,
@@ -19,7 +20,6 @@ import {
 	IconShare2,
 } from "@tabler/icons-react";
 import { Dialog, DialogContent, DialogTitle } from "./ui/dialog";
-import { useState } from "react";
 import { createSharableLink } from "@/actions";
 
 const ExportButton = ({
@@ -33,23 +33,30 @@ const ExportButton = ({
 	const title = useStore((state) => state.title);
 
 	// Copy Image Function Declaration
-	const copyImage = () => {
-		const response = async () => {
-			if (targetRef?.current) {
-				const imgBlob = await toBlob(targetRef.current, {
-					pixelRatio: 2,
-				});
-				const img = new ClipboardItem({ "image/png": imgBlob || "" });
-				navigator.clipboard.write([img]);
-			} else navigator.clipboard.writeText("Something Went Wrong");
-		};
+	const copyImage = useCallback(
+		(event?: KeyboardEvent | React.MouseEvent) => {
+			if (event) event.preventDefault();
+			const response = async () => {
+				if (targetRef?.current) {
+					const imgBlob = await toBlob(targetRef.current, {
+						pixelRatio: 2,
+					});
+					const img = new ClipboardItem({
+						"image/png": imgBlob || "",
+					});
+					navigator.clipboard.write([img]);
+				} else navigator.clipboard.writeText("Something Went Wrong");
+			};
 
-		toast.promise(response(), {
-			loading: "Copying...",
-			success: "Image Copyied to Clipbord..",
-			error: "Something Went Wrong..",
-		});
-	};
+			toast.promise(response(), {
+				loading: "Copying...",
+				success: "Image Copied to Clipboard..",
+				error: "Something Went Wrong..",
+			});
+		},
+		[targetRef],
+	);
+
 	// Generate Screenshot Link to the Portal Function
 	const generateLink = async () => {
 		const state = useStore.getState();
@@ -124,7 +131,39 @@ const ExportButton = ({
 	useHotkeys("ctrl+c", copyImage);
 	useHotkeys("shift+c", generateLink);
 	useHotkeys("shift+s", () => saveImage(title, "PNG"));
-	useHotkeys("ctrl+shift+s", () => saveImage(title, "SVG"));
+
+	useEffect(() => {
+		const handler = (e: KeyboardEvent) => {
+			if (e.ctrlKey && e.shiftKey && e.code === "KeyC") {
+				e.preventDefault();
+				copyImage(e);
+			}
+		};
+		window.addEventListener("keydown", handler);
+		return () => window.removeEventListener("keydown", handler);
+	}, [targetRef, copyImage]);
+
+	// Copy only code with syntax highlighting using highlight.js
+	const copyCodeWithFormatting = async () => {
+		if (targetRef?.current) {
+			const codeBlock =
+				targetRef.current.querySelector("pre") ||
+				targetRef.current.querySelector("code");
+			if (codeBlock) {
+				const text = codeBlock.textContent || "";
+				try {
+					await navigator.clipboard.writeText(text);
+					toast.success("Code copied to clipboard!");
+				} catch {
+					toast.error("Failed to copy code");
+				}
+			} else {
+				toast.error("No code block found");
+			}
+		} else {
+			toast.error("Something Went Wrong");
+		}
+	};
 
 	return (
 		<>
@@ -135,11 +174,20 @@ const ExportButton = ({
 					</Button>
 				</DropdownMenuTrigger>
 				<DropdownMenuContent className="dark">
+					<DropdownMenuItem
+						onClick={copyCodeWithFormatting}
+						className="gap-2"
+					>
+						<IconCapture />
+						Copy
+						<DropdownMenuShortcut>⌘c</DropdownMenuShortcut>
+					</DropdownMenuItem>
 					<DropdownMenuItem onClick={copyImage} className="gap-2">
 						<IconCapture />
 						Copy Image
-						<DropdownMenuShortcut>⌘c</DropdownMenuShortcut>
+						<DropdownMenuShortcut>⌘⇧c</DropdownMenuShortcut>
 					</DropdownMenuItem>
+
 					<DropdownMenuItem
 						className="gap-2"
 						onClick={() =>

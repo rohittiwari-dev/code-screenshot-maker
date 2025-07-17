@@ -89,8 +89,15 @@ const CodeEditor = () => {
 						lineHeight: "1.5",
 					}}
 					textareaClassName="focus:outline-none min-w-[280px] resize-none"
-					// @ts-expect-error Line Conisists of Refereance variable of type HTMLElement | null
-					onClick={(e) => e.currentTarget.select()}
+					onClick={
+						store.isEditorContentCompleteSelectable
+							? (e) => {
+									(
+										e.currentTarget as HTMLTextAreaElement
+									).select();
+							  }
+							: undefined
+					}
 					name="code-editor"
 					id="code-editor"
 					aria-label="Code Editor"

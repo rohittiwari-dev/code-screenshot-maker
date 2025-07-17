@@ -22,6 +22,9 @@ export const sharableLinkDataTable = pgTable("sharable_link_data_table", {
 	showBackground: boolean("show_background").default(true),
 	language: varchar("language", { length: 50 }).notNull(),
 	autoDetectLanguage: boolean("auto_detect_language").default(false),
+	isEditorContentCompleteSelectable: boolean(
+		"is_editor_content_complete_selectable",
+	).default(false),
 	fontSize: integer("font_size").notNull(),
 	fontStyle: varchar("font_style", { length: 50 }).notNull(),
 	padding: integer("padding").notNull(),
