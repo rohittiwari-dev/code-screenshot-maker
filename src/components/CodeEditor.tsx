@@ -16,7 +16,7 @@ const CodeEditor = () => {
 			Object.create(codeSnippets)[
 				Math.floor(Math.random() * codeSnippets.length)
 			];
-		useStore.setState({ ...randomSnipettes });
+		useStore.setState({ ...randomSnipettes, title: "Untitled" });
 	}, []);
 
 	// Auto Detection of Language
